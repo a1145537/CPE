@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char s[105][105];
+    int n = 0;
+    int maxLen = 0;
+    int col, row;
+
+    while (fgets(s[n], 105, stdin)) {
+        int len = strlen(s[n]);
+        if (len > 0 && s[n][len - 1] == '\n') s[n][len - 1] = '\0';
+        len = strlen(s[n]);
+        if (len > maxLen) maxLen = len;
+        n++;
+    }
+
+    for (col = 0; col < maxLen; col++) {
+        for (row = n - 1; row >= 0; row--) {
+            if (col < strlen(s[row]))
+                printf("%c", s[row][col]);
+            else
+                printf(" ");
+        }
+        printf("\n");
+    }
+
+    return 0;
+} 
