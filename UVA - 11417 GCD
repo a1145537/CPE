@@ -1,0 +1,36 @@
+#include <stdio.h>
+
+int gcd(int a, int b) {
+    int temp;
+
+    while (b != 0) {
+        temp = a % b;
+        a = b;
+        b = temp;
+    }
+
+    return a;
+}
+
+int main() {
+    int N;
+
+    while (scanf("%d", &N) != EOF) {
+        if (N == 0) {
+            break;
+        }
+
+        int G = 0;
+        int i, j;
+
+        for (i = 1; i < N; i++) {
+            for (j = i + 1; j <= N; j++) {
+                G += gcd(i, j);
+            }
+        }
+
+        printf("%d\n", G);
+    }
+
+    return 0;
+}
