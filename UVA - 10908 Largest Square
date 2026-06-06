@@ -1,0 +1,64 @@
+#include <stdio.h>
+
+char grid[105][105];
+
+int main() {
+    int T;
+    scanf("%d", &T);
+
+    while (T--) {
+        int M, N, Q;
+        int i, j;
+
+        scanf("%d %d %d", &M, &N, &Q);
+
+        for (i = 0; i < M; i++) {
+            scanf("%s", grid[i]);
+        }
+
+        printf("%d %d %d\n", M, N, Q);
+
+        while (Q--) {
+            int r, c;
+            int len = 1;
+            int k;
+            char ch;
+
+            scanf("%d %d", &r, &c);
+
+            ch = grid[r][c];
+
+            for (k = 1; ; k++) {
+                int top = r - k;
+                int bottom = r + k;
+                int left = c - k;
+                int right = c + k;
+                int ok = 1;
+
+                if (top < 0 || bottom >= M || left < 0 || right >= N) {
+                    break;
+                }
+
+                for (i = top; i <= bottom; i++) {
+                    for (j = left; j <= right; j++) {
+                        if (grid[i][j] != ch) {
+                            ok = 0;
+                            break;
+                        }
+                    }
+                    if (!ok) break;
+                }
+
+                if (ok) {
+                    len = 2 * k + 1;
+                } else {
+                    break;
+                }
+            }
+
+            printf("%d\n", len);
+        }
+    }
+
+    return 0;
+}
