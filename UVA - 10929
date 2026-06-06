@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#pragma warning(disable : 4996)
+int main() {
+	char s[1005];
+	while (scanf("%s", s)==1) {
+		if (strcmp(s, "0") == 0) break;
+		int sum = 0;
+		int len = strlen(s);
+		int i;
+		for (i = 0; i < len; i++) {
+			int digi = s[i] - '0';
+			if (i % 2 == 0) {
+				sum += digi;
+			}
+			else {
+				sum -= digi;
+			}
+
+		}
+		if (sum % 11 == 0) {
+			printf("%s is a multiple of 11.\n", s);
+		}
+		else {
+			printf("%s is not a multiple of 11.\n", s);
+		}
+	}
+   return 0;
+}
