@@ -1,0 +1,53 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    int N;
+    int tc = 1;
+
+    while (scanf("%d", &N) != EOF) {
+        int b[105];
+        int used[20005];
+        int ok = 1;
+
+        memset(used, 0, sizeof(used));
+
+        int i, j;
+
+        for (i = 0; i < N; i++) {
+            scanf("%d", &b[i]);
+        }
+
+        for (i = 0; i < N; i++) {
+            if (b[i] <= 0) {
+                ok = 0;
+            }
+
+            if (i > 0 && b[i] <= b[i - 1]) {
+                ok = 0;
+            }
+        }
+
+        for (i = 0; i < N; i++) {
+            for (j = i; j < N; j++) {
+                int sum = b[i] + b[j];
+
+                if (used[sum]) {
+                    ok = 0;
+                } else {
+                    used[sum] = 1;
+                }
+            }
+        }
+
+        if (ok) {
+            printf("Case #%d: It is a B2-Sequence.\n\n", tc);
+        } else {
+            printf("Case #%d: It is not a B2-Sequence.\n\n", tc);
+        }
+
+        tc++;
+    }
+
+    return 0;
+}
