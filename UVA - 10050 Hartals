@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    int T;
+    scanf("%d", &T);
+
+    while (T--) {
+        int N, P;
+        scanf("%d", &N);
+        scanf("%d", &P);
+
+        int hartal[3655];
+        memset(hartal, 0, sizeof(hartal));
+
+        int i;
+        for (i = 0; i < P; i++) {
+            int h;
+            scanf("%d", &h);
+
+            int day;
+            for (day = h; day <= N; day += h) {
+                if (day % 7 == 6 || day % 7 == 0) {
+                    continue;
+                }
+
+                hartal[day] = 1;
+            }
+        }
+
+        int ans = 0;
+        for (i = 1; i <= N; i++) {
+            if (hartal[i]) {
+                ans++;
+            }
+        }
+
+        printf("%d\n", ans);
+    }
+
+    return 0;
+}
