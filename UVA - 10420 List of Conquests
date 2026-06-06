@@ -1,0 +1,58 @@
+#include <stdio.h>
+#include <string.h>
+
+#define MAXN 2005
+#define MAXLEN 80
+
+typedef struct {
+    char country[80];
+    int count;
+} Node;
+
+int main() {
+    int n, i, j, found;
+    char line[MAXLEN];
+    char country[80];
+    Node arr[MAXN];
+    int size = 0;
+
+    scanf("%d", &n);
+    getchar();  
+
+    for (i = 0; i < n; i++) {
+        fgets(line, sizeof(line), stdin);
+
+        sscanf(line, "%s", country);
+
+        found = 0;
+        for (j = 0; j < size; j++) {
+            if (strcmp(arr[j].country, country) == 0) {
+                arr[j].count++;
+                found = 1;
+                break;
+            }
+        }
+
+        if (!found) {
+            strcpy(arr[size].country, country);
+            arr[size].count = 1;
+            size++;
+        }
+    }
+
+    for (i = 0; i < size - 1; i++) {
+        for (j = i + 1; j < size; j++) {
+            if (strcmp(arr[i].country, arr[j].country) > 0) {
+                Node temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+    }
+
+    for (i = 0; i < size; i++) {
+        printf("%s %d\n", arr[i].country, arr[i].count);
+    }
+
+    return 0;
+}
