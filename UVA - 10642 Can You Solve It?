@@ -1,0 +1,25 @@
+#include <stdio.h>
+
+long long position(long long x, long long y) {
+    long long d = x + y;
+    return d * (d + 1) / 2 + x;
+}
+
+int main() {
+    int T;
+    scanf("%d", &T);
+
+    int tc;
+    for (tc = 1; tc <= T; tc++) {
+        long long x1, y1, x2, y2;
+
+        scanf("%lld %lld %lld %lld", &x1, &y1, &x2, &y2);
+
+        long long start = position(x1, y1);
+        long long end = position(x2, y2);
+
+        printf("Case %d: %lld\n", tc, end - start);
+    }
+
+    return 0;
+}
