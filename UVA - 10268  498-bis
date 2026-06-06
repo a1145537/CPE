@@ -1,0 +1,38 @@
+#include <iostream>
+#include <sstream>
+#include <vector>
+using namespace std;
+
+int main() {
+    long long x;
+    string line;
+
+    while (cin >> x) {
+        cin.ignore();
+
+        getline(cin, line);
+
+        stringstream ss(line);
+        vector<long long> a;
+
+        long long num;
+        while (ss >> num)
+            a.push_back(num);
+
+        int n = a.size() - 1;
+
+        if (n == 0) {
+            cout << 0 << endl;
+            continue;
+        }
+
+        long long ans = a[0] * n;
+
+        for (int i = 1; i < n; i++)
+            ans = ans * x + a[i] * (n - i);
+
+        cout << ans << endl;
+    }
+
+    return 0;
+}
