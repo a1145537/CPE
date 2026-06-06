@@ -1,0 +1,50 @@
+#include <stdio.h>
+
+int main() {
+    int n, m;
+    int fieldNum = 1;
+    char field[105][105];
+
+    int i, j, dx, dy;
+    int ni, nj, cnt;
+
+    while (scanf("%d %d", &n, &m) == 2) {
+        if (n == 0 && m == 0)
+            break;
+
+        for (i = 0; i < n; i++) {
+            scanf("%s", field[i]);
+        }
+
+        if (fieldNum > 1)
+            printf("\n");
+
+        printf("Field #%d:\n", fieldNum);
+
+        for (i = 0; i < n; i++) {
+            for (j = 0; j < m; j++) {
+                if (field[i][j] == '*') {
+                    printf("*");
+                } else {
+                    cnt = 0;
+                    for (dx = -1; dx <= 1; dx++) {
+                        for (dy = -1; dy <= 1; dy++) {
+                            ni = i + dx;
+                            nj = j + dy;
+                            if (ni >= 0 && ni < n && nj >= 0 && nj < m) {
+                                if (field[ni][nj] == '*')
+                                    cnt++;
+                            }
+                        }
+                    }
+                    printf("%d", cnt);
+                }
+            }
+            printf("\n");
+        }
+
+        fieldNum++;
+    }
+
+    return 0;
+}
