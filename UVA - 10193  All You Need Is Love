@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <string.h>
+
+int binaryToDecimal(char s[]) {
+    int result = 0;
+    int i;
+
+    for (i = 0; s[i] != '\0'; i++) {
+        result = result * 2 + (s[i] - '0');
+    }
+
+    return result;
+}
+
+int gcd(int a, int b) {
+    int temp;
+
+    while (b != 0) {
+        temp = a % b;
+        a = b;
+        b = temp;
+    }
+
+    return a;
+}
+
+int main() {
+    int T;
+    scanf("%d", &T);
+
+    int tc;
+    for (tc = 1; tc <= T; tc++) {
+        char s1[35], s2[35];
+
+        scanf("%s", s1);
+        scanf("%s", s2);
+
+        int n1 = binaryToDecimal(s1);
+        int n2 = binaryToDecimal(s2);
+
+        if (gcd(n1, n2) > 1) {
+            printf("Pair #%d: All you need is love!\n", tc);
+        } else {
+            printf("Pair #%d: Love is not all you need!\n", tc);
+        }
+    }
+
+    return 0;
+}
