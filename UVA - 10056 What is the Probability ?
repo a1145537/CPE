@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    int S;
+    scanf("%d", &S);
+
+    while (S--) {
+        int N, I;
+        double p;
+
+        scanf("%d %lf %d", &N, &p, &I);
+
+        if (p == 0) {
+            printf("0.0000\n");
+            continue;
+        }
+
+        double q = 1.0 - p;
+
+        double ans = pow(q, I - 1) * p / (1.0 - pow(q, N));
+
+        printf("%.4lf\n", ans);
+    }
+
+    return 0;
+}
