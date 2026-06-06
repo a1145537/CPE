@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    double s, a;
+    char unit[10];
+
+    while (scanf("%lf %lf %s", &s, &a, unit) != EOF) {
+        double r = 6440.0 + s;
+
+        if (unit[0] == 'm') {
+            a = a / 60.0;
+        }
+
+        if (a > 180.0) {
+            a = 360.0 - a;
+        }
+
+        double pi = acos(-1.0);
+        double theta = a * pi / 180.0;
+
+        double arc = r * theta;
+        double chord = 2.0 * r * sin(theta / 2.0);
+
+        printf("%.6lf %.6lf\n", arc, chord);
+    }
+
+    return 0;
+}
