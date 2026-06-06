@@ -1,0 +1,25 @@
+#include <stdio.h>
+
+int main() {
+    char key[] =
+        "`1234567890-=qwertyuiop[]\\asdfghjkl;'zxcvbnm,./"
+        "`1234567890-=QWERTYUIOP[]\\ASDFGHJKL;'ZXCVBNM,./";
+
+    char c;
+    int i;
+
+    while ((c = getchar()) != EOF) {
+        if (c == ' ' || c == '\n') {
+            putchar(c);
+        } else {
+            for (i = 0; key[i]; i++) {
+                if (key[i] == c) {
+                    putchar(key[i - 2]);
+                    break;
+                }
+            }
+        }
+    }
+
+    return 0;
+}
