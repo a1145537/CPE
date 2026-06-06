@@ -1,0 +1,42 @@
+#include <stdio.h>
+
+int main() {
+    long long n, m;
+
+    while (scanf("%lld %lld", &n, &m) != EOF) {
+        long long arr[100];
+        int len = 0;
+        int ok = 1;
+
+        if (n < m || m <= 1) {
+            ok = 0;
+        } else {
+            arr[len++] = n;
+
+            while (n != 1) {
+                if (n % m != 0) {
+                    ok = 0;
+                    break;
+                }
+
+                n = n / m;
+                arr[len++] = n;
+            }
+        }
+
+        if (!ok) {
+            printf("Boring!\n");
+        } else {
+            int i;
+            for (i = 0; i < len; i++) {
+                if (i > 0) {
+                    printf(" ");
+                }
+                printf("%lld", arr[i]);
+            }
+            printf("\n");
+        }
+    }
+
+    return 0;
+}
