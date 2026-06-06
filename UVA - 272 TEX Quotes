@@ -1,0 +1,21 @@
+#include <stdio.h>
+
+int main() {
+    char ch;
+    int open = 1;  
+
+    while ((ch = getchar()) != EOF) {
+        if (ch == '"') {
+            if (open) {
+                printf("``");
+            } else {
+                printf("''");
+            }
+            open = !open;  
+        } else {
+            putchar(ch);
+        }
+    }
+
+    return 0;
+}
