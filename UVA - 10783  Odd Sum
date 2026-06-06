@@ -1,0 +1,25 @@
+#include <stdio.h>
+
+int main(void) {
+	int T;
+	scanf("%d", &T);
+	int i;
+	for (i = 1; i <= T; i++)
+	{
+		int a, b;
+		scanf("%d", &a);
+		scanf("%d", &b);
+		int sum=0;
+		int t;
+		for (t = a; t <= b; t++)
+		{
+			if (t % 2 == 1) {
+				sum += t;
+			}
+
+		}
+		printf("Case %d: %d\n", i, sum);
+	}
+
+	return 0;
+}
