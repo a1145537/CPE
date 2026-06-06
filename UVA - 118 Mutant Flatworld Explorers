@@ -1,0 +1,65 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    int maxX, maxY;
+    int x, y;
+    char dir;
+    char inst[105];
+    int scent[55][55] = {0};
+
+    scanf("%d %d", &maxX, &maxY);
+
+    while (scanf("%d %d %c", &x, &y, &dir) == 3) {
+        scanf("%s", inst);
+
+        int lost = 0;
+        int i;
+
+        for (i = 0; inst[i] != '\0'; i++) {
+            int nx, ny;
+
+            if (lost) break;
+
+            if (inst[i] == 'L') {
+                if (dir == 'N') dir = 'W';
+                else if (dir == 'W') dir = 'S';
+                else if (dir == 'S') dir = 'E';
+                else if (dir == 'E') dir = 'N';
+            }
+            else if (inst[i] == 'R') {
+                if (dir == 'N') dir = 'E';
+                else if (dir == 'E') dir = 'S';
+                else if (dir == 'S') dir = 'W';
+                else if (dir == 'W') dir = 'N';
+            }
+            else if (inst[i] == 'F') {
+                nx = x;
+                ny = y;
+
+                if (dir == 'N') ny++;
+                else if (dir == 'E') nx++;
+                else if (dir == 'S') ny--;
+                else if (dir == 'W') nx--;
+
+                if (nx < 0 || nx > maxX || ny < 0 || ny > maxY) {
+                    if (scent[x][y]) {
+                        continue;
+                    } else {
+                        scent[x][y] = 1;
+                        lost = 1;
+                    }
+                } else {
+                    x = nx;
+                    y = ny;
+                }
+            }
+        }
+
+        printf("%d %d %c", x, y, dir);
+        if (lost) printf(" LOST");
+        printf("\n");
+    }
+
+    return 0;
+}
